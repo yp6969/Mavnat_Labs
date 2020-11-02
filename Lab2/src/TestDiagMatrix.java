@@ -5,8 +5,6 @@ public class TestDiagMatrix {
 
 	public static void main(String[] args) {
 		Matrix mat = new DiagonalMatrix(4);
-		//1
-		
 		InputStreamReader reader = new InputStreamReader(System.in);
 		StreamTokenizer token = new StreamTokenizer(reader);
 		
@@ -30,48 +28,30 @@ public class TestDiagMatrix {
 					
 				}
 				
-				case "curr" : {
-					
-					System.out.println(list.getCursor());			
+				case "Get" : {
+					token.nextToken();
+					int i = (int)token.nval;
+					token.nextToken();
+					int j = (int)token.nval;
+					System.out.println(mat.get(i, j));
 					break;
 				}	
 				
-				case "next" : {
-
-					System.out.println(list.goToNext());
+				case "PrintM" : {
+					System.out.println(mat.toString());
 					break;
 				}			
 			
-				case "prev" : {
-					System.out.println(list.goToNext());
+				case "MultConst C" : {
+					token.nextToken();
+					int c = (int)token.nval;
+					mat.multByConstant(c);
 					break;
 				}			
-				
-				case "start" : {
-					System.out.println(list.goToBeginning());
+				case "TransM" : {
+					mat.transpose();
 					break;
 				}
-				
-				case "end" : {
-					System.out.println(list.goToEnd());
-					break;
-				}	
-				
-				case "empty" : {
-					System.out.println(list.isEmpty());
-					break;
-				}	
-				
-				case "full" : {
-					System.out.println(list.isFull());
-					break;
-				}	
-				
-				case "clear" : {
-					list.clear();
-					break;
-				}	
-				
 				case "quit" : {
 					return;
 				}
