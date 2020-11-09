@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
 
 public class TestDiagMatrix {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Matrix mat = new DiagonalMatrix(4);
 		InputStreamReader reader = new InputStreamReader(System.in);
 		StreamTokenizer token = new StreamTokenizer(reader);
@@ -62,7 +63,7 @@ public class TestDiagMatrix {
 				}
 			}
 
-		
+		}
 		
 	}
 
