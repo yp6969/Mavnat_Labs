@@ -2,23 +2,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
 
-public class TestSListChar {
+public class TestSListInt {
 
 	public static void main(String[] args) throws IOException {
 			
 		InputStreamReader reader = new InputStreamReader(System.in);
 		StreamTokenizer token = new StreamTokenizer(reader);
-		SLinkedList<Character> list = new SLinkedList<Character>();
+		SLinkedList<Integer> list = new SLinkedList<Integer>();
 		System.out.println("Enter your task");
-
 		while( token.nextToken() == StreamTokenizer.TT_WORD ) {
 							
-				switch ( token.sval.toLowerCase() ) {
+			switch ( token.sval.toLowerCase() ) {
 				
 				case "add" : {
 					token.nextToken();
-					String x = (String)token.sval;
-					list.insert(x.charAt(0));
+					int x = (int)token.nval;
+					list.insert(x);
 					break;
 					
 				}
@@ -30,8 +29,8 @@ public class TestSListChar {
 				
 				case "mv x" : {
 					token.nextToken();
-					String x = (String)token.sval;
-					list.replace(x.charAt(0));
+					int x = (int)token.nval;
+					list.replace(x);
 					break;
 				}			
 			
@@ -69,7 +68,7 @@ public class TestSListChar {
 				}
 				case "q" : {
 					System.out.println("Bye");
-					return;
+					break;
 				}
 				default : {
 					System.out.println("invalid input");
