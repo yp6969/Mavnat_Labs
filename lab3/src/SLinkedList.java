@@ -45,7 +45,7 @@ public class SLinkedList<T>  implements List<T> {
 	@Override
 	public void replace(T newElement) {
 		
-		if 	( isEmpty() || newElement != null) return;
+		if 	( isEmpty() || newElement == null) return;
 		cursor.setElement(newElement);
 	}
 	
