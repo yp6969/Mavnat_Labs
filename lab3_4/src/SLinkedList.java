@@ -81,6 +81,11 @@ public class SLinkedList<T>  implements List<T> {
 		cursor = tmp;  
 		return true;
 	}
+	
+	public boolean hasNext() {
+		if ( isEmpty() || cursor.getNext() == null) return false;
+		return true;
+	}
 
 	@Override
 	public boolean gotoNext() {
