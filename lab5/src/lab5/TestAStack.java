@@ -1,69 +1,50 @@
+package lab5;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
 
-public class TestSListInt {
+public class TestAStack {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws IOException {
-			
 		InputStreamReader reader = new InputStreamReader(System.in);
 		StreamTokenizer token = new StreamTokenizer(reader);
-		SLinkedList<Integer> list = new SLinkedList<Integer>();
-		System.out.println("Enter your task");
+		StackArray<Integer> stack = new StackArray<Integer>(Stack.DEF_MAX_STACK_SIZE);
+		
+		
 		while( token.nextToken() == StreamTokenizer.TT_WORD ) {
-							
+			
 			switch ( token.sval.toLowerCase() ) {
 				
-				case "add" : {
+				case "push" : {
 					token.nextToken();
 					int x = (int)token.nval;
-					list.insert(x);
+					stack.push(new Integer(x));
 					break;
 					
 				}
 				
-				case "del" : {
-					list.remove();
+				case "pop" : {
+					System.out.println(stack.pop());
 					break;
 				}	
 				
-				case "mv x" : {
-					token.nextToken();
-					int x = (int)token.nval;
-					list.replace(x);
+				case "p" : {
+					stack.toString();
 					break;
 				}			
 			
-				case "cur" : {
-					System.out.println(list.getCursor());
+				case "f" : {
+					System.out.println(stack.isFull());
 					break;
 				}			
-				case "n" : {
-					list.gotoNext();
-					break;
-				}
-				case "p" : {
-					list.gotoPrior();
-					break;
-				}
-				case "b" : {
-					list.gotoBeginning();
-					break;
-				}
-				case "end" : {
-					list.gotoEnd();
-					break;
-				}
 				case "e" : {
-					System.out.println(list.isEmpty());
+					System.out.println(stack.isEmpty());
 					break;
 				}
 				case "c" : {
-					list.clear();
-					break;
-				}
-				case "print" : {
-					System.out.println(list.toString());
+					stack.clear();
 					break;
 				}
 				case "q" : {
@@ -76,5 +57,6 @@ public class TestSListInt {
 				}
 			}
 		}
-	}	
+	}
+
 }
