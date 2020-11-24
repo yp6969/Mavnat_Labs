@@ -31,7 +31,7 @@ public class TestAStack {
 				}	
 				
 				case "p" : {
-					stack.toString();
+					System.out.println(stack.toString());
 					break;
 				}			
 			

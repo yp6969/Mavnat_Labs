@@ -1,3 +1,4 @@
+package lab5;
 
 public class StackList<T> implements Stack<T>{
 	

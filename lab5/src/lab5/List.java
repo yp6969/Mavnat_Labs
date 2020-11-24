@@ -1,3 +1,5 @@
+package lab5;
+
 
 public interface List<T> {
 		

@@ -45,9 +45,18 @@ public class StackArray<T> implements Stack<T>{
 		if( top == stack.length) return true;
 		return false;
 	}
-	
+
+	@Override
 	public String toString() {
-		return stack.toString();
+		StringBuilder ss = new StringBuilder();
+		for (int i=0 ; i<=top; i++){
+			ss.append(stack[i].toString() + ' ');
+		}
+		return ss.toString();
+	}
+
+	public int getTop() {
+		return top;
 	}
 	
 

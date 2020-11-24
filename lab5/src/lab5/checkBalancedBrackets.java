@@ -16,25 +16,25 @@ public class checkBalancedBrackets {
 		while( token.nextToken() == StreamTokenizer.TT_WORD ) {
 			String s = (String)token.sval;
 			System.out.println(checkBrackets(s));
-		}		
+		}
 
 	}
 	
 	public static boolean checkBrackets(String s) {
 		StackArray<Character> stack = new StackArray<Character>(Stack.DEF_MAX_STACK_SIZE);
 		for (int i = 0; i < s.length(); i++) {
-			if(openP.indexOf(s.charAt(i)) != -1) {
-				stack.push(s.charAt(i));
-			}
+			int idx_o = openP.indexOf(s.charAt(i));
+			int idx_c = closeP.indexOf(s.charAt(i));
+			if (idx_o == -1 && idx_c == -1) continue;
+			else if (idx_o != -1) stack.push(s.charAt(i));
 			else {
-				int idx = closeP.indexOf(s.charAt(i));
-				if( idx != -1 ) {
-					
-				}
-				
+				char top = stack.pop();
+				int topId = openP.indexOf(top);
+				if (idx_c != -1 && idx_c == topId) continue;
+				else stack.push(top);
 			}
 		}
-		return true;
+		return stack.getTop() == -1;
 	}
 
 }

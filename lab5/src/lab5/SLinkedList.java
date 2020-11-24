@@ -1,3 +1,5 @@
+package lab5;
+
 
 
 public class SLinkedList<T>  implements List<T> {
