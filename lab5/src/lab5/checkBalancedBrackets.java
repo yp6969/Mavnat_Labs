@@ -11,12 +11,15 @@ public class checkBalancedBrackets {
 	
 	public static void main(String[] args) throws IOException {
 		InputStreamReader reader = new InputStreamReader(System.in);
-		StreamTokenizer token = new StreamTokenizer(reader);		
-		
-		while( token.nextToken() == StreamTokenizer.TT_WORD ) {
-			String s = (String)token.sval;
-			System.out.println(checkBrackets(s));
-		}
+		StreamTokenizer token = new StreamTokenizer(reader);
+
+		String s = "{a+[b+a*(a+b)]}";
+		System.out.println(checkBrackets(s));
+		String s1 = "{a+[b+a*(a+b]}";
+		System.out.println(checkBrackets(s1));
+
+		String s2 = "{a+b+a*(a+b)]}";
+		System.out.println(checkBrackets(s2));
 
 	}
 	
@@ -31,7 +34,10 @@ public class checkBalancedBrackets {
 				char top = stack.pop();
 				int topId = openP.indexOf(top);
 				if (idx_c != -1 && idx_c == topId) continue;
-				else stack.push(top);
+				else{
+					stack.push(top);
+					stack.push(s.charAt(i));
+				}
 			}
 		}
 		return stack.getTop() == -1;
