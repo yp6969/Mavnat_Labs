@@ -1,3 +1,4 @@
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
@@ -7,6 +8,7 @@ public class TestBSTree {
     public static void main(String[] args) throws IOException {
 
         BSTree tree = new BSTree();
+       // FileReader fr = new FileReader("input.txt");
         InputStreamReader reader = new InputStreamReader(System.in);
         StreamTokenizer token = new StreamTokenizer(reader);
 
@@ -26,13 +28,13 @@ public class TestBSTree {
                 case "find" : {
                     token.nextToken();
                     int x = (int)token.nval;
-                    System.out.println(tree.retrieve(x));
+                    System.out.println(tree.retrieve(x).getKey());
                     break;
                 }
                 case "k" : {
-                    System.out.println(tree.Preorder());
-                    System.out.println(tree.Inorder());
-                    System.out.println(tree.Postorder());
+                    System.out.println("print Preorder:\n"+tree.Preorder());
+                    System.out.println("print Inorder:\n"+tree.Inorder());
+                    System.out.println("print Postorder:\n"+tree.Postorder());
                     break;
                 }
 
@@ -56,6 +58,15 @@ public class TestBSTree {
                 case "q" : {
                     System.out.println("Bye");
                     return;
+                }
+                
+                case "d" : {
+                	
+                    token.nextToken();
+                    int x = (int)token.nval;
+                    tree.delete(x);
+                    break;
+
                 }
                 default : {
                     System.out.println("invalid input");

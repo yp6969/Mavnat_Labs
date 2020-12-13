@@ -1,0 +1,13 @@
+add 43
+add 72
+add 20
+add 16
+add 31
+add 65
+add 86
+add 3
+add 7
+add 78
+k
+t
+k
