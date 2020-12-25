@@ -12,15 +12,15 @@ public class AVLTree {
 	 * 
 	 * @param left
 	 * @param right
-	 * @return balance factor
+	 * @return balance factor NULL is -1
 	 */
 	private int balanceFactor(AVLTreeNode root){
 		if(root.getLeft() == null && root.getRight() == null) { return 0; }
 		if(root.getLeft() == null) {
-			return -root.getRight().getHeight();
+			return -1 - root.getRight().getHeight();
 		}
 		if(root.getRight() == null) {
-			return root.getLeft().getHeight();
+			return root.getLeft().getHeight() + 1 ;
 		}
 		return root.getLeft().getHeight() - root.getRight().getHeight();
 	}
@@ -61,6 +61,8 @@ public class AVLTree {
 		}
 
 		root.setHeight(getHight(root));
+		if( root.balanceFactor())
+
 		
 		
 		return null;
@@ -73,7 +75,9 @@ public class AVLTree {
 	public void insert(int newElement){
 		
 	}
-	
+
+
+
 	public AVLTreeNode retrieve( int searchKey){
 		return null;
 	}
