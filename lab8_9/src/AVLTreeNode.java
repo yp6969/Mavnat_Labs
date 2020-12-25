@@ -13,10 +13,6 @@ public class AVLTreeNode {
 	}
 	
 	
-	
-	
-	
-	
 	/**
 	 * getters & setters
 	 */
