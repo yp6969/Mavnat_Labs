@@ -9,9 +9,8 @@ public class AVLTree {
 	
 	/**
 	 * check the balance between left and right
-	 * 
-	 * @param left
-	 * @param right
+	 *
+	 * @param root
 	 * @return balance factor NULL is -1
 	 */
 	private int balanceFactor(AVLTreeNode root){
@@ -40,13 +39,20 @@ public class AVLTree {
 		}
 		return Math.max(root.getLeft().getHeight(), root.getRight().getHeight()) + 1;
 	}
-	
+
+
+
+
+	/*********************************************************************/
+
 	/**
 	 * insert node to the tree
 	 * 
 	 * @param root
 	 * @param newElement
 	 * @return AVL Tree
+	 *
+	 *
 	 */
 	private AVLTreeNode insert_rec(AVLTreeNode root, int newElement){
 		if(root == null){
@@ -63,7 +69,25 @@ public class AVLTree {
 		root.setHeight(getHight(root));		
 		int BF_root = balanceFactor(root);
 
+		/**
+		 * checking the rotation
+		 */
+		if(BF_root >= 2 || BF_root <= -2)
+			return rotate(root, BF_root);
+
+		return root;
+	}
+
+
+
+	/**
+	 *
+	 * rotate functions
+	 *
+	 */
+	private AVLTreeNode rotate(AVLTreeNode root, int BF_root){
 		// rotate LL
+
 		if( BF_root == 2  &&  balanceFactor(root.getLeft()) >=0 ) {
 			return rotate_LL(root);
 		}
@@ -71,7 +95,7 @@ public class AVLTree {
 		else if( BF_root == 2  &&  balanceFactor(root.getLeft()) == -1 ) {
 			return rotate_LR(root);
 		}
-		
+
 		// rotate RR
 		else if( BF_root == -2  &&  balanceFactor(root.getRight()) <= 0 ) {
 			return rotate_RR(root);
@@ -80,12 +104,14 @@ public class AVLTree {
 		else if( BF_root == -2  &&  balanceFactor(root.getRight()) == 1 ) {
 			return rotate_RL(root);
 		}
-					
-		return root;
+		return null;
 	}
-	
-	
-	
+
+	/**
+	 *
+	 * @param root
+	 * @return
+	 */
 	private AVLTreeNode rotate_LR(AVLTreeNode root) {
 				
 		root.setLeft(rotate_RR(root.getLeft()));
@@ -96,59 +122,93 @@ public class AVLTree {
 		root.setRight(rotate_LL(root.getRight()));
 		return rotate_RR(root);
 	}
-	
-	
+
+	/**
+	 *
+	 * @param root
+	 * @return
+	 */
 	private AVLTreeNode rotate_LL(AVLTreeNode root) {
 			
 		AVLTreeNode return_val = root.getLeft();
 		root.setLeft(return_val.getRight());
 		return_val.setRight(root);
-			
+
+		/*  update the hights */
+		root.setHeight(getHight(root));
+		return_val.setHeight(getHight(return_val));
 		return return_val;
 	}
-		
+
+	/**
+	 *
+	 * @param root
+	 * @return
+	 */
 	private AVLTreeNode rotate_RR(AVLTreeNode root) {
 			
 		AVLTreeNode return_val = root.getRight();
 		root.setRight(return_val.getLeft());	
 		return_val.setLeft(root);
-		
+
+		/*  update the hights */
+		root.setHeight(getHight(root));
+		return_val.setHeight(getHight(return_val));
 		return return_val;
 	}
 	
 	/**
+	 * insert the key
 	 * 
 	 * @param newElement
 	 */
 	public void insert(int newElement){
 		root = insert_rec(root, newElement);
 	}
+	/*********************************************************************/
 
+
+
+	/**
+	 *
+	 * seaching for the key
+	 *
+	 * @param root
+	 * @param searchKey
+	 * @return
+	 *
+	 *
+	 */
+
+	public AVLTreeNode rec_retrieve(AVLTreeNode root , int searchKey){
+		if (root == null) return root;
+		if (root.getKey() == searchKey) return root;
+		if (root.getKey() < searchKey) return rec_retrieve(root.getRight(), searchKey);
+		else if (root.getKey() >= searchKey) return rec_retrieve(root.getLeft(), searchKey);
+		return null;
+	}
 
 	public AVLTreeNode retrieve(int searchKey) {
 		return rec_retrieve(root, searchKey);
 	}
 
-	public AVLTreeNode rec_retrieve(AVLTreeNode root , int searchKey){
-		
-		if (root == null)
-			return root;
-		if (root.getKey() == searchKey) {
-			return root;
-		}
-		if (root.getKey() < searchKey) {
-			return rec_retrieve(root.getRight(), searchKey);
-		} else if (root.getKey() >= searchKey) {
-			return rec_retrieve(root.getLeft(), searchKey);
-		}
-		return null;
-	}
-	
-	
+
+
+	/**
+	 * clear all the Tree
+	 */
 	public void clear(){
 		root = null;
-	}// Clear tree
-	
+	}
+
+
+	/**
+	 *
+	 *
+	 * @return true if empty else false
+	 *
+	 */
+
 	public boolean isEmpty(){
 		if(root == null) return true;
 		return false;
@@ -161,16 +221,27 @@ public class AVLTree {
 		return rec_Inorder(root).toString();
 	}
 
+
+
+
+	/**
+	 *
+	 * Making inorder string from the Tree
+	 * @param root
+	 * @return
+	 *
+	 *
+	 */
 	private StringBuilder rec_Inorder(AVLTreeNode root) {
 
 		StringBuilder ss = new StringBuilder();
 		if (root == null)
 			return ss.append("");
 		if ( root.getLeft()== null && root.getRight() == null )
-			return ss.append(String.valueOf(root.getKey())+ " ");
+			return ss.append(String.valueOf(root.getKey())+ "(" + root.getHeight() + ") ");
 
 		ss.append(rec_Inorder(root.getLeft()));
-		ss.append(root.getKey() +" ");
+		ss.append(root.getKey() + "(" + root.getHeight() + ") ");
 		ss.append(rec_Inorder(root.getRight()));
 		return ss;
 	}
