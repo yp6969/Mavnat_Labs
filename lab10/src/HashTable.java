@@ -15,12 +15,15 @@ public class HashTable {
 
     public HashTable ( int maxNumber ){                                 // Constructor: specific size
         hashArray = new SLinkedList[maxNumber];
+//        for( int i=0 ; i<maxNumber ; i++){
+//            hashArray[i] = new SLinkedList();
+//        }
         hashSize = maxNumber;
     }
 
 
 
-
+                                                                        // Hash Functions
     /**
      *
      * @param key
@@ -58,13 +61,14 @@ public class HashTable {
      */
     public boolean retrieve ( HashTableData searchElem){
         if(searchElem == null) throw new RuntimeException("searchElem == null");
-        if(isEmpty()) return false;
+        if(isEmpty() == true) return false;
 
         int code = HashFunction(searchElem.getKey());
 
         SLinkedList<HashTableData> head = hashArray[code];
         while ( head.getCursor() != null ){
             if(head.getCursor().equals(searchElem)){
+                head.gotoBeginning();
                 return true;
             }
             if(head.gotoNext() == false) break;
@@ -77,13 +81,14 @@ public class HashTable {
     /**
      *
      * @param newElem
-     * @return
+     * @return true if the element is inserted else false
      */
     public boolean insert ( HashTableData newElem){
         if(newElem == null) throw new RuntimeException("newElem == null");
         if(isFull()) return false;
-
         int code = HashFunction(newElem.getKey());
+        if(hashArray[code] == null) hashArray[code] = new SLinkedList<HashTableData>();
+        else if(retrieve(newElem) == true) return true; // the element is already exist
         hashArray[code].insert(newElem);
         return true;
     }
@@ -92,18 +97,27 @@ public class HashTable {
 
     /**
      *
-     * @param remElem
-     * @return
+     * @param remElem to be removed
+     * @return true if the removal was success else false
      */
     public boolean remove ( HashTableData remElem){
         if(remElem == null) throw new RuntimeException("remElem == null");
         if(isEmpty()) return false;
-
+        if(retrieve(remElem) == false) return false; // the elem not found
         int code = HashFunction(remElem.getKey());
-        hashArray[code].insert(remElem);
+        SLinkedList<HashTableData> head = hashArray[code];
+
+        while ( head.getCursor() != null ){
+            if(head.getCursor().equals(remElem)){
+                head.remove();
+                head.gotoBeginning();
+                return true; // remove success
+            }
+            if(head.gotoNext() == false) break;
+        }
+        head.gotoBeginning();
         return true;
     }
-
 
 
     /**
@@ -112,7 +126,6 @@ public class HashTable {
     public void clear (){
         hashArray = null;
     }
-
 
 
     /**
@@ -125,7 +138,6 @@ public class HashTable {
     }
 
 
-
     /**
      *
      * @return true if is Full
@@ -133,12 +145,18 @@ public class HashTable {
     public boolean isFull(){ return false;}
 
 
-
     /**
      *
      * @return the Srting Structure of the table
      */
     public String toString(){
-        return null;
+        StringBuilder ss = new StringBuilder();
+        for( SLinkedList l : hashArray){
+            if(l != null) {
+                ss.append(l.toString());
+                ss.append("\n");
+            }
+        }
+        return ss.toString();
     }
 }

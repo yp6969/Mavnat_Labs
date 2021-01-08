@@ -130,7 +130,7 @@ public class SLinkedList<T>  implements List<T> {
 			str.append( tmp.getElement() +  ( ( tmp.getNext()!= null) ? " , " : " "  ) );  // the last value print without ',' 
 			tmp = tmp.getNext();
 		}
-		str.append( " ]" ); 
+		str.append( " ]\n" );
 
 		return str.toString();
 	}

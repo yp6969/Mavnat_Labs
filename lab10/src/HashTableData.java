@@ -28,6 +28,16 @@ public class HashTableData{
         return Objects.hash(key, name, id, age, avg);
     }
 
+
+    @Override
+    public String toString() {
+        return "Family name='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                ", age=" + age +
+                ", avg=" + avg;
+    }
+
     public String getKey() {
         return key;
     }
