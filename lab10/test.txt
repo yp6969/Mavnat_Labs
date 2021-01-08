@@ -1,0 +1,13 @@
+add
+asd
+yair
+340089565
+34
+98.9
+add
+ad
+yairpp
+30089565
+34
+88.9
+print
