@@ -9,7 +9,7 @@ public class TestAVLTree {
 		
 		AVLTree tree = new AVLTree();
         InputStreamReader reader = new InputStreamReader(System.in);
-        StreamTokenizer token = new StreamTokenizer(new FileReader("tetsTree.txt"));
+        StreamTokenizer token = new StreamTokenizer(reader);
 
         while( token.nextToken() == StreamTokenizer.TT_WORD ) {
 

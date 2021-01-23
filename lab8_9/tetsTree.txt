@@ -4,3 +4,10 @@ add 5
 add 7
 add 20
 k
+find 10
+find 11
+e
+f
+c
+find 3
+e
