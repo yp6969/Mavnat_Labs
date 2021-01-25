@@ -4,8 +4,8 @@ public class AVLTreeNode {
 	private int key;
 	private int height; // Height of the sub-tree
 	private AVLTreeNode left, right;
-	public AVLTreeNode (int elem, int height, AVLTreeNode leftPtr, AVLTreeNode rightPtr)
-	{
+
+	public AVLTreeNode (int elem, int height, AVLTreeNode leftPtr, AVLTreeNode rightPtr){
 		key = elem;
 		this.height = height;
 		this.left = left;

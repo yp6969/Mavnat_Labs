@@ -246,4 +246,23 @@ public class AVLTree {
 		return ss;
 	}
 
+
+
+
+
+
+	public static int[] order(AVLTree t1, AVLTree t2){
+
+		if(t1 == null && t2 == null) {
+			return new int[0];
+		}
+
+
+		if(t1.root
+
+
+
+	}
+
+
 }

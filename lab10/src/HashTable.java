@@ -15,9 +15,6 @@ public class HashTable {
 
     public HashTable ( int maxNumber ){                                 // Constructor: specific size
         hashArray = new SLinkedList[maxNumber];
-//        for( int i=0 ; i<maxNumber ; i++){
-//            hashArray[i] = new SLinkedList();
-//        }
         hashSize = maxNumber;
     }
 

@@ -126,6 +126,11 @@ public class SparseMatrix implements Matrix {
 		return newMat;
 	}
 
+
+
+
+
+
 	public String toString() {
 		StringBuilder ss = new StringBuilder();
 		for (int i = 0; i < size; i++) {
@@ -141,5 +146,43 @@ public class SparseMatrix implements Matrix {
 		}
 		return ss.toString();
 	}
+
+
+
+
+
+
+
+
+	public static SparseMatrix multSparseMatrix(SparseMatrix Am,SparseMatrix B) throws Exception {
+
+		SparseMatrix mult = new SparseMatrix(Am.size, 0);
+
+
+		SLinkedList<SparseMatrixEntry> A = Am.matrix;
+//		SLinkedList<SparseMatrixEntry> B = Bm.matrix;
+
+		A.gotoBeginning();
+//		B.gotoBeginning();
+		while (A.hasNext()){
+			SparseMatrixEntry m = A.getCursor();
+
+			for(int i = 0 ; i < B.size ; i++){
+
+				double res = m.getValue() * B.get(m.getJ(), i);
+
+				mult.put(m.getI(), i, res);
+			}
+
+		}
+
+
+
+
+		return null;
+	}
+
+
+
 
 }
