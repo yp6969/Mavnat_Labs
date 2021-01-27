@@ -249,20 +249,22 @@ public class AVLTree {
 
 
 
-
-
-	public static int[] order(AVLTree t1, AVLTree t2){
-
-		if(t1 == null && t2 == null) {
-			return new int[0];
-		}
-
-
-		if(t1.root
-
-
-
-	}
+//
+//
+//	public static int[] order(AVLTree t1, AVLTree t2){
+//
+//		if(t1 == null && t2 == null) {
+//			return new int[0];
+//		}
+//	}
+//
+//	public static int[] inorder(AVLTreeNode root){
+//		if(root == null) return null;
+//
+//		int[] a = inorder(root.getLeft());
+//		int[] b = inorder(root.getRight());
+//		return copy
+//	}
 
 
 }

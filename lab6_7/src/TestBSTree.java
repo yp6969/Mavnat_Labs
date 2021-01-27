@@ -1,4 +1,3 @@
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
@@ -8,7 +7,6 @@ public class TestBSTree {
     public static void main(String[] args) throws IOException {
 
         BSTree tree = new BSTree();
-       // FileReader fr = new FileReader("input.txt");
         InputStreamReader reader = new InputStreamReader(System.in);
         StreamTokenizer token = new StreamTokenizer(reader);
 
@@ -58,15 +56,6 @@ public class TestBSTree {
                 case "q" : {
                     System.out.println("Bye");
                     return;
-                }
-                
-                case "d" : {
-                	
-                    token.nextToken();
-                    int x = (int)token.nval;
-                    tree.delete(x);
-                    break;
-
                 }
                 default : {
                     System.out.println("invalid input");

@@ -108,7 +108,10 @@ public class SparseMatrix implements Matrix {
 		while (matrix.getCursor() != null) {
 			int i = matrix.getCursor().getI();
 			int j = matrix.getCursor().getJ();
-			newMat.put(i, j, get(i, j) - mat.get(i, j));
+			double res = get(i, j) - mat.get(i, j);
+			if ( res != defaultValue ) {
+				newMat.put(i, j, res);
+			}
 			if (matrix.gotoNext() == false)
 				break;
 		}
